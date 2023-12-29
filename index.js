@@ -2,7 +2,10 @@ const express = require('express')
 const path = require('path')
 const router = require('./routes');
 const expressLayouts = require('express-ejs-layouts');
-const { nextTick } = require('process');
+
+const db = require('./config/db');
+require('./models/Usuarios')
+db.sync().then(() => console.log('Base de Datos conectada con exito')).catch((error) => console.log(error))
 
 require('dotenv').config({path: 'variables.env'})
 
